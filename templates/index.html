@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+    <title>Главная</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            {% for item in menu %}
+            <li><a href="{{item['url']}}">{{item['name']}}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+    <main>
+        <div class="block">
+            <div class="block-st">
+                <div class="style-block-1">
+                    <form action="/" method="POST">
+                        <h2>Авторизация</h2>
+                        <div class="input-box">
+                            <ion-icon name="people-outline"></ion-icon>
+                            <input value="" type="text" name="link" class="link" id="link" required>
+                            <label for="link" class="form-label">Ссылка</label>
+                        </div>
+                        <div class="input-box1">
+                            {% if 'userLogged' in session and session['userLogged']!=None: %}
+                            <ion-icon name="people-outline"></ion-icon>
+                            <label for="hreflink" class="form-label">изменить название</label><br>
+                            <input value="" type="text" name="hreflink" class="hreflink" id="hreflink" ><br>
+                            <p></p>
+                            <select name="type" id="typeId" class="sel">
+                                {% for ii in typeln %}
+                                <option value="{{ii[0]}}">{{ii[1]}}</option>
+                                {% endfor %}
+                            </select>
+                            {% else: %}
+                            <select name="type" id="typeId" class="sel">
+                                <option value="2">general</option>
+                            </select>
+                            {% endif %}
+                        </div>
+                        <p class="linkGot">
+
+                        </p>
+                        <button class="submit_accept" name="btn" value="auto">Сократить</button>
+                            <p style="color:red">{% for msg in get_flashed_messages() %}</p>
+                            <p>Ваша ссылка:</p>
+                            <a href="{{baselink}}href/{{msg}}">{{baselink}}href/{{msg}}</a>
+                            {% endfor %}
+                    </form>
+
+                </div>
+                <div class="style-block-3">
+                    <h2>Общие ссылки:</h2>
+                    <div class="block-style-slide-nn">
+                        {% for ii in publicln %}
+                        <div>
+                            <a href="{{baselink}}href/{{msg}}" class="cl-ln">{{baselink}}href/{{ii[2]}}</a>
+                        </div>
+                        {% endfor %}
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="style-block-2">
+                <h2>Ваши ссылки:</h2>
+                <div>
+                    <table>
+                        <tr>
+                            <div>
+                                <td>id</td>
+                            </div>
+                            <div>
+                                <td>link</td>
+                            </div>
+                            <div>
+                                <td>user_id</td>
+                            </div>
+                            <div>
+                                <td>type</td>
+                            </div>
+                        </tr>
+                        {% for i in ms %}
+                        <tr>
+                            <td>{{i[0]}}
+
+                            </td>
+                            <td><a href="{{baselink}}href/{{msg}}" class="cl-ln">{{baselink}}href/{{i[2]}}</a></td>
+                            <td class="td-id">{{i[3]}}</td>
+                            <td>{{i[5]}}</td>
+                            <td>
+                                <form action="/index" method="post">
+                                <select name="type" id="typeId" class="sel">
+                                    {% for ii in typeln %}
+                                    <option value="{{ii[0]}}">{{ii[1]}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <input class='hrefs' value="{{i[2]}}" name="hrefs" type="text">
+                                <input name="idln" value="{{i[0]}}" type="number" style="display: none;">
+                            </td>
+                            <td>
+                                <button class="btn1">change</button>
+                            </td>
+                                </form>
+                            <form action="/delet" method="POST">
+                        <td><button name="idd" class="btn1" value="{{i[0]}}">
+                            <ion-icon name="trash-outline" class="del1"></ion-icon>
+                        </button></td>
+                    </form>
+                    </tr>
+                    {% endfor %}
+                    </table>
+                    </form>
+                </div>
+                <div>
+                </div>
+
+
+    </main>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

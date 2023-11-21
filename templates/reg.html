@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reg.css')}}">
+    <title>Регистрация</title>
+</head>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="reg" method="post" class="form">
+                    <h2>Регистрация</h2>
+                    <div class="input-box">
+                    <ion-icon name="person-outline"></ion-icon>
+    
+                        <input value=""required type="text" name="login" class="form-control"
+                            id="login" >
+                            <label for="login" class="form-label">Логин</label>
+                    </div>
+                    <p class="right-p">
+                    <p class="right-p">
+
+                    <div class="input-box">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+    
+                        <input type="password" name="password"required class="form-control" id="password">
+                        <label for="password" class="form-label">Пароль</label>
+                    </div>
+                    <p class="right-p">
+
+                    </p>
+                    <div class="input-box">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" name="password_confirmation" required class="form-control" id="password_confirm">
+                        <label for="password_confirmation" class="form-label">Подтверждение пароля</label>
+                    </div>
+                    <p class="right-p">
+
+                    </p>
+                    <button class="submit_accept" name="btn">Зарегестрироваться</button>
+                    <div class="register">
+                        <p>Есть аккаунта? <a href="/log">Авторизуйтесь</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
